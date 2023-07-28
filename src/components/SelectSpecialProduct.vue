@@ -34,13 +34,13 @@ export default {
             this.$store.commit("setShowSelectSpecialProduct", false)
         },
         fetchProducts(){
-            axios.get('http://174.138.17.246:8000/api/product/category/'+this.$store.state.adminSelectedCategoryId)
+            axios.get('http://api.tysophearum.tech/api/product/category/'+this.$store.state.adminSelectedCategoryId)
             .then(res => {
                 this.products = res.data.products
             })
         },
         changeSpecialProduct(id) {
-            axios.put('http://174.138.17.246:8000/api/category/'+this.$store.state.adminSelectedCategoryId, {
+            axios.put('http://api.tysophearum.tech/api/category/'+this.$store.state.adminSelectedCategoryId, {
                 special_product_id: id
             })
             .then(res => {

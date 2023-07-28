@@ -39,7 +39,7 @@ export default {
         },
         deleteItem() {
             this.cancel()
-            axios.delete("http://174.138.17.246:8000/api/category/"+this.$store.state.deleteCategoryId, {
+            axios.delete("http://api.tysophearum.tech/api/category/"+this.$store.state.deleteCategoryId, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
                 }

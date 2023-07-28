@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         getPromotions() {
-            axios.get("http://174.138.17.246:8000/api/product/promotion/"+this.$route.params.id)
+            axios.get("http://api.tysophearum.tech/api/product/promotion/"+this.$route.params.id)
             .then(res => {
                 this.promotions = res.data
             })

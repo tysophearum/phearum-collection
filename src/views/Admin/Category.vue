@@ -60,7 +60,7 @@ export default{
             this.$store.commit("setDeleteCategoryId", id)
         },
         getCategories() {
-            axios.get("http://174.138.17.246:8000/api/category")
+            axios.get("http://api.tysophearum.tech/api/category")
             .then(res => {
                 this.categories = res.data
             })

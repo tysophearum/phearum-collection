@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         getCart() {
-            axios.get("http://174.138.17.246:8000/api/cart", {
+            axios.get("http://api.tysophearum.tech/api/cart", {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }

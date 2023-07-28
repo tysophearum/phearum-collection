@@ -44,7 +44,7 @@ export default {
             this.cancelPopup()
         },
         addCategory() {
-            axios.post("http://174.138.17.246:8000/api/category", { 
+            axios.post("http://api.tysophearum.tech/api/category", { 
                 name: this.name, 
                 description: this.description
             }, {

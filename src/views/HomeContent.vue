@@ -53,7 +53,7 @@ export default {
       this.$router.push('/selectProduct/'+id)
     },
     fetchProducts(){
-      axios.get('http://174.138.17.246:8000/api/product/category/'+this.$route.params.id)
+      axios.get('http://api.tysophearum.tech/api/product/category/'+this.$route.params.id)
       .then(res => {
         this.products = res.data
       })

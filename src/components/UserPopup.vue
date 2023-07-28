@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         logout() {
-            axios.get("http://174.138.17.246:8000/api/logout", {
+            axios.get("http://api.tysophearum.tech/api/logout", {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }
@@ -38,7 +38,7 @@ export default {
             })
         },
         fetchUser() {
-            axios.get('http://174.138.17.246:8000/api/user', {
+            axios.get('http://api.tysophearum.tech/api/user', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }

@@ -55,7 +55,7 @@ export default {
     },
     methods: {
         fetchIndex() {
-            axios.get("http://174.138.17.246:8000/api/product/all")
+            axios.get("http://api.tysophearum.tech/api/product/all")
             .then(res => {
                 this.items = res.data
             })
@@ -64,7 +64,7 @@ export default {
             })
         },
         promote(id) {
-            axios.get("http://174.138.17.246:8000/api/product/promote/"+id, {
+            axios.get("http://api.tysophearum.tech/api/product/promote/"+id, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
                 }
@@ -74,7 +74,7 @@ export default {
             })
         },
         demote(id) {
-            axios.get("http://174.138.17.246:8000/api/product/demote/"+id, {
+            axios.get("http://api.tysophearum.tech/api/product/demote/"+id, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
                 }

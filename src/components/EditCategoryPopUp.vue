@@ -46,7 +46,7 @@ export default {
             this.cancelEditCategory()
         },
         addCategory() {
-            axios.put("http://174.138.17.246:8000/api/category/"+this.category.id, {
+            axios.put("http://api.tysophearum.tech/api/category/"+this.category.id, {
                 name: this.category.name, 
                 description: this.category.description
             }, {
@@ -59,7 +59,7 @@ export default {
             })
         },
         getCategory() {
-            axios.get("http://174.138.17.246:8000/api/category/" + this.$store.state.editCategoryId)
+            axios.get("http://api.tysophearum.tech/api/category/" + this.$store.state.editCategoryId)
             .then(res => {
                 this.category = res.data
             })

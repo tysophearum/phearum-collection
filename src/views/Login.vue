@@ -40,7 +40,7 @@
               password: this.password
             }
             
-            axios.post("http://174.138.17.246:8000/api/login", data)
+            axios.post("http://api.tysophearum.tech/api/login", data)
               .then(response => {
                 let res = response.data;
                 

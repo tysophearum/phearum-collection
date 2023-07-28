@@ -93,13 +93,13 @@ export default {
     },
     methods: {
         getSizes() {
-            axios.get("http://174.138.17.246:8000/api/size")
+            axios.get("http://api.tysophearum.tech/api/size")
             .then(res => {
                 this.sizes = res.data
             })
         },
         getCategories() {
-            axios.get("http://174.138.17.246:8000/api/category")
+            axios.get("http://api.tysophearum.tech/api/category")
             .then(res => {
                 this.categories = res.data
             })
@@ -117,7 +117,7 @@ export default {
             }
         },
         addProduct(){
-            axios.put("http://174.138.17.246:8000/api/product/"+this.$route.params.id, {
+            axios.put("http://api.tysophearum.tech/api/product/"+this.$route.params.id, {
                 name: this.product.name,
                 category_id: this.product.category_id,
                 price: this.product.price,
@@ -134,13 +134,13 @@ export default {
                     let formdata = new FormData()
                     formdata.append("product_id", newProduct.id)
                     formdata.append("image", image)
-                    axios.post("http://174.138.17.246:8000/api/image", formdata, {header: { "content-type": "multipart/form-data" }})
+                    axios.post("http://api.tysophearum.tech/api/image", formdata, {header: { "content-type": "multipart/form-data" }})
                 });
                 this.$router.push('/ProductManagement')
             })
         },
         getProduct() {
-            axios.get('http://174.138.17.246:8000/api/product/'+this.$route.params.id)
+            axios.get('http://api.tysophearum.tech/api/product/'+this.$route.params.id)
             .then(res => {
                 this.product = res.data
                 this.product.sizes.forEach(size => {

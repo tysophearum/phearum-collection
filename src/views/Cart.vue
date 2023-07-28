@@ -75,7 +75,7 @@ export default {
     },
     methods: {
         getCart() {
-            axios.get("http://174.138.17.246:8000/api/cart", {
+            axios.get("http://api.tysophearum.tech/api/cart", {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }
@@ -102,7 +102,7 @@ export default {
             }
         },
         editt(id, quantity) {
-            axios.put('http://174.138.17.246:8000/api/item/'+id, {quantity: quantity}, {
+            axios.put('http://api.tysophearum.tech/api/item/'+id, {quantity: quantity}, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }
@@ -116,7 +116,7 @@ export default {
             })
         },
         destroy(id) {
-            axios.delete('http://174.138.17.246:8000/api/item/'+id, {
+            axios.delete('http://api.tysophearum.tech/api/item/'+id, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }
