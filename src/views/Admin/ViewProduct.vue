@@ -7,7 +7,7 @@
         <div class="flex py-4 justify-between">
             <div class="w-[49.5%]">
                 <div class=" bg-white w-full p-8 rounded-3xl">
-                    <img class="w-full" :src="product.images[i].image_path" alt="">
+                    <img class="w-full" :src="'https://api.tysophearum.tech'+product.images[i].image_path" alt="">
                 </div>
                 <div class=" bg-white my-4 w-full p-4 rounded-3xl">
                     <h2 class=" mb-2 text-lg">Product name:</h2>
@@ -19,7 +19,7 @@
             <div class="w-[49.5%]">
                 <div class=" grid grid-cols-3 gap-3">
                     <button v-for="(image, index) in product.images" :key="index" :class="`flex items-center ${index === i?'bg-black':'bg-white'} duration-200 justify-center rounded-lg p-4`" @click="select(index)" >
-                        <img :src="image.image_path" alt="">
+                        <img :src="'https://api.tysophearum.tech'+image.image_path" alt="">
                     </button>
                 </div>
                 <div class=" bg-white my-4 w-full p-4 rounded-3xl">

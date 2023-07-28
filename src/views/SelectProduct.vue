@@ -5,7 +5,7 @@
     </div>
     <div class="productInfo flex justify-between">
         <div class="bg-[#ffa405] rounded-xl m-4 h-[56vh] w-[48%] flex items-center justify-center shadow-2xl shadow-grey-900">
-            <img :src="product.images[i].image_path" alt="">
+            <img :src="'https://api.tysophearum.tech'+product.images[i].image_path" alt="">
         </div>
         <div class="info w-[48%] p-4">
             <h1 class=" text-5xl font-bold">{{product.name}}</h1>
@@ -29,7 +29,7 @@
     </div>
     <div class=" flex">
         <div v-for="(image, index) in product.images" :class="`view w-[15vw] h-26 mx-4 border-4 rounded-lg border-[#ffa405] duration-150 flex items-center justify-center ${index === i ? 'bg-[#ffa405]' : 'bg-white'}`">
-            <img class=" overflow-hidden" :src="image.image_path" alt="" @click="changeImage(index)">
+            <img class=" overflow-hidden" :src="'https://api.tysophearum.tech'+image.image_path" alt="" @click="changeImage(index)">
         </div>
     </div>
     <div class=" p-4">

@@ -20,7 +20,7 @@
                         <button @click="changeSpecialProduct()" class="bg-black text-white text-sm p-1 rounded-xl duration-150 hover:bg-gray-600">Change</button>
                     </div>
                     <div v-if="category.special_product_id != null" @click="select(category.special_product.id)" class="w-full  flex justify-between cursor-pointer">
-                        <img class="w-[49%] h-fit" :src="category.special_product.images[0].image_path" alt="">
+                        <img class="w-[49%] h-fit" :src="'https://api.tysophearum.tech'+category.special_product.images[0].image_path" alt="">
                         <div class="w-[49%]">
                             <h2 class=" mb-2 text-lg">Product name:</h2>
                             <h1 class=" mb-2 text-4xl font-bold ">{{ category.special_product.name }}</h1>

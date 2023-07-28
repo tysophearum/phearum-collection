@@ -9,7 +9,7 @@
             <h1 class=" text-3xl text-white font-bold bg-[#0000008b] p-3 my-9">$249.99</h1>
         </div>
     </div>
-    <PromotionItem class=" cursor-pointer" v-for="promotion in promotions" :name="promotion.name" :price="promotion.price" :src="promotion.images[0].image_path" @click="select(promotion.id)"/>
+    <PromotionItem class=" cursor-pointer" v-for="promotion in promotions" :name="promotion.name" :price="promotion.price" :src="'https://api.tysophearum.tech'+promotion.images[0].image_path" @click="select(promotion.id)"/>
 </template>
 <script>
 import PromotionItem from '../components/PromotionItem.vue';

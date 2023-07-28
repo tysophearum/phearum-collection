@@ -11,7 +11,7 @@
                 </div>
                 <div class="w-full h-1 bg-black"></div>
                 <div v-for="(item, index) in items" class=" grid grid-cols-5 text-lg my-2">
-                    <img class=" rounded-xl h-fit w-fit object-cover" :src="item.product.images[0].image_path" alt="">
+                    <img class=" rounded-xl h-fit w-fit object-cover" :src="'https://api.tysophearum.tech'+item.product.images[0].image_path" alt="">
                     <h1 class=" flex items-center justify-center">{{ item.product.name }}({{ item.size_id+36 }})</h1>
                     <h1 class=" flex items-center justify-center">${{ item.product.price }}</h1>
                     <div class="flex justify-end">

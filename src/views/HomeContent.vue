@@ -7,7 +7,7 @@
             </p>
             <button class="bg-black p-4 shadow-xl text-white font-bold rounded-2xl hover:bg-white hover:text-black hover:duration-300" @click="select(products.special_product.id)">VIEW PRODUCT</button>
         </div>
-        <img class="drop-shadow-lg mx-10 relative w-[45%] h-96 object-cover overflow-y-hidden" :src="'https://api.tysophearum.tech/'+products.special_product.images[0].image_path" alt="shoe1.png">
+        <img class="drop-shadow-lg mx-10 relative w-[45%] h-96 object-cover overflow-y-hidden" :src="'https://api.tysophearum.tech'+products.special_product.images[0].image_path" alt="shoe1.png">
     </div>
     <div class="bg-black mx-4 p-4 shadow-xl text-white font-bold rounded-2xl flex justify-center items-center">
       <span class="mx-10"> Limited offer. 30% off on some products availeble in our store!!! </span>
@@ -17,7 +17,7 @@
     </div>
     <div class="grid grid-cols-5 gap-6 p-4">
       <!-- <RouterLink to="/selectProduct"> -->
-        <StoreItem v-for="product in products.products" :name="product.name" :price="product.price" :src="product.images[0].image_path" @click="select(product.id)"/>
+        <StoreItem v-for="product in products.products" :name="product.name" :price="product.price" :src="'https://api.tysophearum.tech'+product.images[0].image_path" @click="select(product.id)"/>
       <!-- </RouterLink> -->
       
     </div>

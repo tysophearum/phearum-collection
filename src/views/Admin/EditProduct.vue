@@ -56,7 +56,7 @@
                         <h2 class=" text-lg">Selected Images:</h2>
                         <div class=" flex">
                             <div v-for="(image, index) in product.images" :key="index" class="flex items-center justify-center w-40 h-40 bg-[#ffa405] rounded-lg mx-1">
-                                <img :src="image.image_path" alt="Selected Image" class=" w-full object-cover"/>
+                                <img :src="'https://api.tysophearum.tech'+image.image_path" alt="Selected Image" class=" w-full object-cover"/>
                             </div>
                             <div v-for="(image, index) in selectedImages" :key="index" class="flex items-center justify-center w-40 h-40 bg-[#ffa405] rounded-lg mx-1">
                                 <img :src="imageUrl(image)" alt="Selected Image" class=" w-full object-cover"/>
