@@ -67,10 +67,10 @@ export default {
     },
     methods: {
         getProduct() {
-            axios.get("http://api.tysophearum.tech/api/product/"+this.$route.params.id)
+            axios.get("https://api.tysophearum.tech/api/product/"+this.$route.params.id)
             .then(res => {
                 this.product = res.data
-                axios.get("http://api.tysophearum.tech/api/category/" + this.product.category_id)
+                axios.get("https://api.tysophearum.tech/api/category/" + this.product.category_id)
                 .then(res => {
                     this.product.category = res.data.name
                 })

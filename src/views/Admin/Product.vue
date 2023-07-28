@@ -53,7 +53,7 @@ export default{
             this.$store.commit("setDeleteProductId", id)
         },
         getProducts() {
-            axios.get("http://api.tysophearum.tech/api/product")
+            axios.get("https://api.tysophearum.tech/api/product")
             .then(res => {
                 this.products = res.data
             })

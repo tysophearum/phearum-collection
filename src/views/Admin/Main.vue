@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         logout() {
-            axios.get("http://api.tysophearum.tech/api/logout", {
+            axios.get("https://api.tysophearum.tech/api/logout", {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
                 }

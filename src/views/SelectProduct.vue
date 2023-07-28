@@ -84,7 +84,7 @@ export default {
             }
         },
         async select(id) {
-            await axios.get("http://api.tysophearum.tech/api/product/"+id)
+            await axios.get("https://api.tysophearum.tech/api/product/"+id)
             .then(res => {
                 this.product = res.data
             })
@@ -99,7 +99,7 @@ export default {
                     quantity: this.quantity,
                     size_id: this.size_id
                 }
-                axios.post("http://api.tysophearum.tech/api/item", data, {
+                axios.post("https://api.tysophearum.tech/api/item", data, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('token'),
                     }

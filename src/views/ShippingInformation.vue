@@ -98,7 +98,7 @@ export default {
     },
     methods: {
         getShippingInfo() {
-            axios.get('http://api.tysophearum.tech/api/shippingInformation', {
+            axios.get('https://api.tysophearum.tech/api/shippingInformation', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }

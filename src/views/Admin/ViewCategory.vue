@@ -77,7 +77,7 @@ export default {
     },
     methods: {
         fetchCategory() {
-            axios.get("http://api.tysophearum.tech/api/category/products/"+this.$route.params.id)
+            axios.get("https://api.tysophearum.tech/api/category/products/"+this.$route.params.id)
             .then(res => {
                 this.category = res.data
                 this.category.special_product = this.category.products.find(product => product.id == this.category.special_product_id)

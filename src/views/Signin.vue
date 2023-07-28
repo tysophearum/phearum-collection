@@ -80,7 +80,7 @@ export default {
                 password_confirmation: this.confirm_password,
                 role: this.role_id
             };
-            axios.post('http://api.tysophearum.tech/api/register', data)
+            axios.post('https://api.tysophearum.tech/api/register', data)
             .then(res => {
                 localStorage.setItem('token', res.data.token)
                 this.$router.push('/home/1')
