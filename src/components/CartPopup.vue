@@ -7,7 +7,7 @@
                 <div class="w-full h-[3px] bg-black"></div>
                 <!-- <button @click="getCart()">here</button> -->
                 <div class=" h-fit max-h-28 overflow-auto">
-                    <div v-for="item in items" class=" border-b-2 border-black mb-2">
+                    <div v-for="item in items" class=" bg-white rounded-lg px-2 shadow mb-2">
                         <p class=" text-lg">{{ item.product.name }}</p>
                         <p class=" text-lg">Qty: {{item.quantity}} | ${{item.product.price}}</p>
                     </div>
@@ -15,9 +15,11 @@
                 </div>
                 <div class=" flex justify-between">
                     <RouterLink to="/cart" class="w-[46%]">
-                        <button class=" w-full py-1 rounded-lg border-4 border-[#ffa405] font-bold">View Cart</button>
+                        <button @click="this.$store.state.showCart = !this.$store.state.showCart" class=" w-full py-1 rounded-lg border-4 border-[#ffa405] font-bold">View Cart</button>
                     </RouterLink>
-                    <button class=" w-[46%] py-1 rounded-lg border-4 border-[#ffa405] bg-[#ffa405] font-bold">Checkout</button>
+                    <RouterLink class="w-[46%]" to="/shippingInformation">
+                        <button @click="this.$store.state.showCart = !this.$store.state.showCart" class=" w-full py-1 rounded-lg border-4 border-[#ffa405] bg-[#ffa405] font-bold">Checkout</button>
+                    </RouterLink>
                 </div>
             </div>
         </div>
@@ -34,13 +36,12 @@ export default {
     },
     methods: {
         getCart() {
-            axios.get("http://localhost:8000/api/cart", {
+            axios.get("http://174.138.17.246:8000/api/cart", {
                 headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }
             }).then(res => {
                 this.items = res.data
-                console.log(this.items);
             })
         },
     },

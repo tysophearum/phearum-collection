@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class=" flex justify-end w-full mr-14 mb-6">
-                <button class=" bg-red-700 w-fit px-3 text-white h-9 rounded mr-8" @click="showPopup(false)">Cancel</button>
+                <button class=" bg-red-700 w-fit px-3 text-white h-9 rounded mr-8" @click="showPopup()">Cancel</button>
                 <button class=" bg-blue-700 w-fit px-3 text-white h-9 rounded" @click="addCategory()">Edit</button>
             </div>
         </form>
@@ -21,6 +21,16 @@
 <script>
 import axios from 'axios';
 export default {
+    props: {
+        callParentFunction: {
+            type: Function,
+            required: true,
+        },
+        cancelEditCategory: {
+            type: Function,
+            required: true,
+        },
+    },
     data() {
       return {
         category: {
@@ -32,22 +42,24 @@ export default {
     },
     name: "EditCategoryPopUp",
     methods: {
-        showPopup(show) {
-            this.$store.commit("setShowEditCategory", show)
+        showPopup() {
+            this.cancelEditCategory()
         },
-        async addCategory() {
-                this.showPopup(false)
-            axios.put("http://localhost:8000/api/category/"+this.category.id, {
+        addCategory() {
+            axios.put("http://174.138.17.246:8000/api/category/"+this.category.id, {
                 name: this.category.name, 
                 description: this.category.description
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
+                }
             })
             .then(res => {
-                console.log(res.data);
-                this.$router.go()
+                this.callParentFunction()
             })
         },
         getCategory() {
-            axios.get("http://localhost:8000/api/category/" + this.$store.state.editCategoryId)
+            axios.get("http://174.138.17.246:8000/api/category/" + this.$store.state.editCategoryId)
             .then(res => {
                 this.category = res.data
             })

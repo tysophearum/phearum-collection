@@ -2,11 +2,11 @@
     <div class="h-[100vh] overflow-auto bg-[#f9f8ff] rounded-xl">
         <div class=" px-6 h-[97%]">
             <div class="flex justify-between items-center my-2">
-                <RouterLink to="/ProductManagement" class="flex items-center h-6 my-4">
+                <button @click="this.$router.go(-1)" class="flex items-center h-6 my-4">
                     <img class="h-full mr-2" src="https://cdn-icons-png.flaticon.com/512/66/66822.png" alt="">
-                    <p class=" text-xl">View Products</p>
-                </RouterLink>
-                <button @click="addProduct" class=" p-2 bg-blue-500 rounded-lg text-white">Add Product</button>
+                    <p class=" text-xl">Back</p>
+                </button>
+                <button @click="addProduct" class=" p-2 bg-blue-500 rounded-lg text-white">Update Product</button>
             </div>
             <div class=" bg-[#ffa3059c] p-6 rounded-lg h-[92%] overflow-auto">
                 <div class=" mb-4">
@@ -49,14 +49,6 @@
                         </label>
                     </div>
                 </div>
-                <div class=" border p-2 rounded-lg bg-white my-2" :class="{'bg-blue-300': discount}">
-                    <label>
-                        <input
-                            type="checkbox"
-                        />
-                        Discount
-                    </label>
-                </div>
                 <div>
 
                     <!-- Display selected images (optional) -->
@@ -95,31 +87,19 @@ export default {
             sizes: undefined,
             categories: undefined,
             selectAll: false,
-            product: {
-                name: undefined,
-                category_id: undefined,
-                price: undefined,
-                description: undefined,
-                discount: false,
-                sizes: [],
-                images: [
-                    {
-                        image_path: ''
-                    }
-                ]
-            },
+            product: Object(),
             selectedImages: []
         }
     },
     methods: {
         getSizes() {
-            axios.get("http://localhost:8000/api/size")
+            axios.get("http://174.138.17.246:8000/api/size")
             .then(res => {
                 this.sizes = res.data
             })
         },
         getCategories() {
-            axios.get("http://localhost:8000/api/category")
+            axios.get("http://174.138.17.246:8000/api/category")
             .then(res => {
                 this.categories = res.data
             })
@@ -137,13 +117,16 @@ export default {
             }
         },
         addProduct(){
-            axios.put("http://localhost:8000/api/product/"+this.$store.state.adminEditProductId, {
+            axios.put("http://174.138.17.246:8000/api/product/"+this.$route.params.id, {
                 name: this.product.name,
                 category_id: this.product.category_id,
                 price: this.product.price,
                 sizes: this.selectedSizes,
-                discount: this.product.discount,
                 description: this.product.description
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
+                }
             })
             .then(async res => {
                 let newProduct = res.data
@@ -151,13 +134,13 @@ export default {
                     let formdata = new FormData()
                     formdata.append("product_id", newProduct.id)
                     formdata.append("image", image)
-                    axios.post("http://localhost:8000/api/image", formdata, {header: { "content-type": "multipart/form-data" }})
+                    axios.post("http://174.138.17.246:8000/api/image", formdata, {header: { "content-type": "multipart/form-data" }})
                 });
-                this.$router.push('ProductManagement')
+                this.$router.push('/ProductManagement')
             })
         },
         getProduct() {
-            axios.get('http://localhost:8000/api/product/'+this.$store.state.adminEditProductId)
+            axios.get('http://174.138.17.246:8000/api/product/'+this.$route.params.id)
             .then(res => {
                 this.product = res.data
                 this.product.sizes.forEach(size => {

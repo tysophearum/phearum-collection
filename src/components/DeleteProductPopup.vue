@@ -23,16 +23,29 @@
 import axios from 'axios';
 export default {
     name: "DeleteProductPopup",
+    props: {
+        callParentFunction: {
+            type: Function,
+            required: true,
+        },
+        cancelDeleteProduct: {
+            type: Function,
+            required: true,
+        },
+    },
     methods: {
         cancel() {
-            this.$store.commit("setShowDeleteProduct", false)
+            this.cancelDeleteProduct()
         },
         deleteItem() {
             this.cancel()
-            axios.delete("http://localhost:8000/api/product/"+this.$store.state.deleteProductId)
+            axios.delete("http://174.138.17.246:8000/api/product/"+this.$store.state.deleteProductId, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
+                }
+            })
             .then(res => {
-                console.log(res);
-                this.$router.go()
+                this.callParentFunction()
             })
         }
     }

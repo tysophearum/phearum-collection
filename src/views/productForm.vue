@@ -29,11 +29,9 @@
         formData.append('image', this.file);
   
         // Send the data to the API
-        console.log(this.file);
-        axios.post('http://localhost:3000/product/', formData, {header: { "content-type": "multipart/form-data" }})
+        axios.post('http://174.138.17.246:3000/product/', formData, {header: { "content-type": "multipart/form-data" }})
           .then(response => {
             // Handle the API response
-            console.log(response.data);
             // Reset the form
             this.name = '';
             this.email = '';

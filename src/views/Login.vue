@@ -11,8 +11,11 @@
             <label class="block text-black text-sm font-bold mb-2" for="password">Password</label>
             <input v-model="password" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Enter your password">
           </div>
-          <div class="flex items-center justify-start">
+          <div class="flex items-center justify-between">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" @click="">Sign In</button>
+            <RouterLink to='/register'>
+              <button class="text-blue-500 font-bold">Sign Up</button>
+            </RouterLink>
           </div>
         </form>
       </div>
@@ -37,17 +40,28 @@
               password: this.password
             }
             
-            axios.post("http://localhost:8000/api/login", data)
+            axios.post("http://174.138.17.246:8000/api/login", data)
               .then(response => {
-                // Handle the API response
                 let res = response.data;
                 
-                this.$store.commit('setToken', res.token)
-                // Reset the form
-                this.email = '';
-                this.password = '';
-                
-                this.$router.push("/")
+                if(res.user.role === 1) {
+                  this.$store.commit('setUser', res)
+                  localStorage.setItem('token', res.token)
+  
+                  this.email = '';
+                  this.password = '';
+                  
+                  this.$router.push("/")
+                }
+                else if (res.user.role === 2) {
+                  this.$store.commit('setUser', res)
+                  localStorage.setItem('tokenAdmin', res.token)
+  
+                  this.email = '';
+                  this.password = '';
+                  
+                  this.$router.push("/admin")
+                }
                       
               })
               .catch(error => {

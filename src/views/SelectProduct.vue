@@ -1,5 +1,4 @@
 <template>
-    <Header class=" sticky top-0"/>
     <div class="breadcrumb flex h-5 mx-4">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Home-icon.svg/1200px-Home-icon.svg.png" alt="">
         <span class=" mx-3"> > </span> <span>Nike</span> <span class=" mx-3"> > </span> <b> Nike flyease</b>
@@ -44,12 +43,9 @@
             <StoreItem name="Giannis Immortality" price="200" src="https://static.nike.com/a/images/t_default/58fa611a-337e-4716-9106-144ebc168cc5/giannis-immortality-basketball-shoes-p9QlJF.png" />
         </div>
     </div>
-    <Footer />
 </template>
 <script>
-import Header from '../components/header.vue'
 import StoreItem from '../components/StoreItem.vue'
-import Footer from '../components/footer.vue'
 import axios from 'axios'
 export default {
     name: "SelectProduct",
@@ -88,7 +84,7 @@ export default {
             }
         },
         async select(id) {
-            await axios.get("http://localhost:8000/api/product/"+id)
+            await axios.get("http://174.138.17.246:8000/api/product/"+id)
             .then(res => {
                 this.product = res.data
             })
@@ -97,20 +93,19 @@ export default {
             this.i = index
         },
         addToCart () {
-            if(this.$store.state.token){
+            if(localStorage.getItem('token')){
                 let data = {
                     product_id: this.product.id,
                     quantity: this.quantity,
                     size_id: this.size_id
                 }
-                axios.post("http://localhost:8000/api/item", data, {
+                axios.post("http://174.138.17.246:8000/api/item", data, {
                     headers: {
-                        Authorization: 'Bearer ' + this.$store.state.token,
+                        Authorization: 'Bearer ' + localStorage.getItem('token'),
                     }
                 })
                 .then(res => {
-                    console.log(res.data);
-                    this.$router.push('/')
+                    this.$router.push('/home/1')
                 })
                 .catch(() => {
                     this.notSelect = true
@@ -122,12 +117,10 @@ export default {
         }
     },
     components: {
-        Header,
         StoreItem,
-        Footer
     },
     async mounted() {
-        await this.select(this.$store.state.selectedProductId)
+        await this.select(this.$route.params.id)
     }
 }
 </script>

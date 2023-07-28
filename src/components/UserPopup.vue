@@ -7,7 +7,7 @@
                 <div class="w-full h-[3px] bg-black"></div>
                 <p class=" text-lg"><b>Name:</b>  {{ user.name }}</p>
                 <p class=" text-lg"><b>Email:</b>  {{ user.email }}</p>
-                <button @click="logout()" class="w-full py-1 rounded-lg border-4 border-[#ffa405] bg-[#ffa405] font-bold">Logout</button>
+                <button @click="logout()" class="w-full py-1 rounded-lg border-4 border-[#ffa405] bg-[#ffa405] font-bold duration-150 hover:border-[#ca8b1d] hover:bg-[#ca8b1d]">Logout</button>
             </div>
         </div>
     </div>
@@ -26,28 +26,30 @@ export default {
     },
     methods: {
         logout() {
-            axios.get("http://localhost:8000/api/logout", {
+            axios.get("http://174.138.17.246:8000/api/logout", {
                 headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }
             }).then(res => {
-                console.log(res.data);
-                this.$store.commit('setToken', false)
-                this.$router.push('/')
+                this.$store.commit('setUser', false)
+                localStorage.removeItem('token')
+                this.$router.push('/home/1')
+                this.$router.go()
             })
         },
-        getUser() {
-            axios.get("http://localhost:8000/api/user", {
+        fetchUser() {
+            axios.get('http://174.138.17.246:8000/api/user', {
                 headers: {
-                    Authorization: 'Bearer ' + this.$store.state.token,
+                    Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }
-            }).then(res => {
+            })
+            .then(res => {
                 this.user = res.data
             })
         }
     },
     mounted() {
-        this.getUser()
+        this.fetchUser()
     }
 }
 </script>

@@ -3,45 +3,29 @@ import createPersistedState from "vuex-plugin-persistedstate";
 
 const store = createStore({
     state: {
-      selectedItem: null,
-      products: undefined,
-      selectedProductId: undefined,
-      token: undefined,
-      categoryId: undefined,
-      showAddCategoryPopup: false,
-      showDeleteCategory: false,
+      showCart: false,
+      user: undefined,
       deleteCategoryId: undefined,
-      showEditCategory: false,
       editCategoryId: undefined,
-      showDeleteProduct: false,
       deleteProductId: undefined,
-      showAddProduct: false,
-      addProductId: undefined,
       index: null,
-      adminSelectedProductId: undefined,
-      adminEditProductId: undefined,
+      showSelectSpecialProduct: false,
+      shippingInformation: {
+        firstName: '',
+        lastName: '',
+        company: '',
+        address: '',
+        apt: '',
+        country: '',
+        state: '',
+        zip: '',
+        order_id: 0
+      },
+      shippingMethod: undefined
     },
     mutations: {
-      setSelectedItem(state, data) {
-        state.selectedItem = data
-      },
-      setProducts(state, data){
-        state.products = data
-      },
-      setSelectedProductId(state, data){
-        state.selectedProductId = data
-      },
-      setToken(state, data) {
-        state.token = data
-      },
-      setCategoryId(state, data) {
-        state.categoryId = data
-      },
-      setShowAddCategoryPopup(state, data) {
-        state.showAddCategoryPopup = data
-      },
-      setShowDeleteCategory(state, data) {
-        state.showDeleteCategory = data
+      setUser(state, data) {
+        state.user = data
       },
       setDeleteCategoryId(state, data) {
         state.deleteCategoryId = data
@@ -49,38 +33,23 @@ const store = createStore({
       setCategoryChange(state, data) {
         state.categoryChange = data
       },
-      setShowEditCategory(state, data) {
-        state.showEditCategory = data
-      },
       setEditCategoryId(state, data) {
         state.editCategoryId = data
-      },
-      setShowDeleteProduct(state, data) {
-        state.showDeleteProduct = data
       },
       setDeleteProductId(state, data) {
         state.deleteProductId = data
       },
-      setShowAddProduct(state, data) {
-        state.showAddProduct = data
-      },
-      setAddProductId(state, data) {
-        state.addProductId = data
-      },
       setIndex(state, data) {
         state.index = data
       },
-      setAdminSelectedProductId(state, data){
-        state.adminSelectedProductId = data
-      },
-      setAdminEditedProductId(state, data){
-        state.adminEditProductId = data
+      setShowSelectSpecialProduct(state, data) {
+        state.showSelectSpecialProduct = data
       },
     },
     getters: {
 
     },
-    plugins: [createPersistedState()],
+    // plugins: [createPersistedState({})],
 })
 
 export default store

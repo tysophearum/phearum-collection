@@ -1,25 +1,29 @@
 <template>
-    <div class="bg-[#f9f8ff] rounded-xl">
-        <AddCategoryPopup v-if="this.$store.state.showAddCategoryPopup"/>
-        <DeleteCategoryPopup v-if="this.$store.state.showDeleteCategory"/>
-        <EditCategoryPopUp v-if="this.$store.state.showEditCategory"/>
-        <div class=" p-6">
+    <div class="bg-[#f9f8ff] rounded-xl px-6">
+        <AddCategoryPopup :call-parent-function="getCategories" :cancel-popup="cancelAddCategoryPopup" v-if="addCategoryPopup"/>
+        <DeleteCategoryPopup :call-parent-function="getCategories" :cancelShowDeletePopup="cancelDeleteCat" v-if="showDeleteCategory"/>
+        <EditCategoryPopUp :call-parent-function="getCategories" :cancel-edit-category="cancelEditCat" v-if="showEditCategory"/>
+        <div class=" py-6">
             <h1 class=" text-3xl font-bold">Category Management</h1>
         </div>
         <div class=" flex justify-end m-2">
-            <button class=" bg-blue-700 w-fit px-3 text-white h-9 rounded" @click="showAddCategoryPopup(true)">Add Category</button>
+            <button class=" bg-blue-700 w-fit px-3 text-white h-9 rounded" @click="showAddCategoryPopup()">Add Category</button>
         </div>
         <div class=" w-full h-12 rounded bg-[#ffa405] grid grid-cols-3">
             <div class=" flex items-center justify-center font-bold">Name</div>
             <div class=" flex items-center justify-center font-bold">Description</div>
             <div class=" flex items-center justify-center font-bold">Action</div>
         </div>
-        <div v-for="(category, index) in categories" class=" w-full h-12 rounded bg-[#ffa30571] border border-white grid grid-cols-3">
-            <div class=" flex items-center justify-center">{{ category.name }}</div>
-            <div class=" flex items-center justify-center">{{ category.description }}</div>
+        <div v-for="(category, index) in categories" class=" w-full h-12 rounded bg-white my-2 shadow duration-100 grid grid-cols-3 hover:bg-[#ffa305ae]">
+            <RouterLink :to="'/viewCategory/'+category.id" class=" flex items-center justify-center">
+                <button>{{ category.name }}</button>
+            </RouterLink>
+            <RouterLink :to="'/viewCategory/'+category.id" class=" flex items-center justify-center">
+                <button>{{ category.description }}</button>
+            </RouterLink>
             <div class="flex items-center justify-between px-24">
-                <button class=" bg-white w-20 h-9 rounded" @click="showEditCat(category.id)">Edit</button>
-                <button class=" bg-red-700 w-20 h-9 rounded text-white" @click="showDeleteCat(); passId(category.id)">Delete</button>
+                <button class=" bg-blue-600 text-white w-20 h-9 rounded duration-150 hover:h-11" @click="showEditCat(category.id)">Edit</button>
+                <button class=" bg-red-700 w-20 h-9 rounded text-white duration-150 hover:h-11" @click="showDeleteCat(); passId(category.id)">Delete</button>
             </div>
         </div>
     </div>
@@ -34,41 +38,46 @@ export default{
     components: {
         AddCategoryPopup,
         DeleteCategoryPopup,
-        EditCategoryPopUp
+        EditCategoryPopUp,
     },
     data() {
         return {
             categories: undefined,
             change: this.$store.state.categoryChange,
+            addCategoryPopup: false,
+            showDeleteCategory: false,
+            showEditCategory: false
         }
     },
     methods: {
         showDeleteCat() {
-            this.$store.commit("setShowDeleteCategory", true)
+            this.showDeleteCategory = true
+        },
+        cancelDeleteCat() {
+            this.showDeleteCategory = false
         },
         passId(id) {
-            this.$store.commit("setDeleteCategoryId", id),
-            console.log(this.$store.state.deleteCategoryId);
+            this.$store.commit("setDeleteCategoryId", id)
         },
         getCategories() {
-            axios.get("http://localhost:8000/api/category")
+            axios.get("http://174.138.17.246:8000/api/category")
             .then(res => {
                 this.categories = res.data
             })
         },
-        showAddCategoryPopup (show) {
-            this.$store.commit("setShowAddCategoryPopup", show)
+        showAddCategoryPopup () {
+            this.addCategoryPopup = true
+        },
+        cancelAddCategoryPopup () {
+            this.addCategoryPopup = false
         },
         showEditCat(id) {
-            this.$store.commit("setShowEditCategory", true)
+            this.showEditCategory = true
             this.$store.commit("setEditCategoryId", id)
-            
-        }
-    },
-    watch: {
-        change() {
-            console.log("adsfv");
-        }
+        },
+        cancelEditCat() {
+            this.showEditCategory = false
+        },
     },
     mounted() {
         this.getCategories()

@@ -3,9 +3,13 @@
 </script>
 
 <template>
-  <Header class=" sticky top-0 z-10"/>
-  <HomeContent></HomeContent>
-  <Footer></Footer>
+  <div class="flex flex-col justify-between min-h-screen">
+    <div>
+      <Header class=" sticky top-0 z-10"/>
+      <RouterView />
+    </div>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script>
@@ -19,6 +23,6 @@ export default {
     Header,
     Footer,
     HomeContent
-  }
+  },
 }
 </script>

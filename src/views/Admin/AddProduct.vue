@@ -2,10 +2,10 @@
     <div class="h-[100vh] overflow-auto bg-[#f9f8ff] rounded-xl">
         <div class=" px-6 h-[97%]">
             <div class="flex justify-between items-center my-2">
-                <RouterLink to="/ProductManagement" class="flex items-center h-6 my-4">
+                <button @click="this.$router.go(-1)" class="flex items-center h-6 my-4">
                     <img class="h-full mr-2" src="https://cdn-icons-png.flaticon.com/512/66/66822.png" alt="">
-                    <p class=" text-xl">View Products</p>
-                </RouterLink>
+                    <p class=" text-xl">Back</p>
+                </button>
                 <button @click="addProduct" class=" p-2 bg-blue-500 rounded-lg text-white">Add Product</button>
             </div>
             <div class=" bg-[#ffa3059c] p-6 rounded-lg h-[92%] overflow-auto">
@@ -103,13 +103,13 @@ export default {
     },
     methods: {
         getSizes() {
-            axios.get("http://localhost:8000/api/size")
+            axios.get("http://174.138.17.246:8000/api/size")
             .then(res => {
                 this.sizes = res.data
             })
         },
         getCategories() {
-            axios.get("http://localhost:8000/api/category")
+            axios.get("http://174.138.17.246:8000/api/category")
             .then(res => {
                 this.categories = res.data
             })
@@ -127,13 +127,17 @@ export default {
             }
         },
         addProduct(){
-            axios.post("http://localhost:8000/api/product", {
+            axios.post("http://174.138.17.246:8000/api/product", {
                 name: this.name,
                 category_id: this.category_id,
                 price: this.price,
                 sizes: this.selectedSizes,
                 discount: this.discount,
                 description: this.description
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
+                }
             })
             .then(async res => {
                 let newProduct = res.data
@@ -141,14 +145,12 @@ export default {
                     let formdata = new FormData()
                     formdata.append("product_id", newProduct.id)
                     formdata.append("image", image)
-                    axios.post("http://localhost:8000/api/image", formdata, {header: { "content-type": "multipart/form-data" }})
+                    axios.post("http://174.138.17.246:8000/api/image", formdata, {header: { "content-type": "multipart/form-data" }})
                 });
-                this.$router.push('product')
+                this.$router.go(-1)
             })
         },
         test() {
-            console.log(this.selectedSizes);
-            console.log(this.discount);
         },
         handleFileChange(event) {
             // Get the selected files from the input element

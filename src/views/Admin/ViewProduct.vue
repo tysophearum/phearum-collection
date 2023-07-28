@@ -1,9 +1,9 @@
 <template>
-    <div class=" bg-[#f9f8ff] rounded-xl px-4">
-        <RouterLink to="/ProductManagement" class="flex items-center h-6 my-4">
+    <div class=" bg-[#f9f8ff] rounded-xl px-4 ">
+        <button @click="this.$router.go(-1)" class="flex items-center h-6 my-4">
             <img class="h-full mr-2" src="https://cdn-icons-png.flaticon.com/512/66/66822.png" alt="">
-            <p class=" text-xl">View Products</p>
-        </RouterLink>
+            <p class=" text-xl">Back</p>
+        </button>
         <div class="flex py-4 justify-between">
             <div class="w-[49.5%]">
                 <div class=" bg-white w-full p-8 rounded-3xl">
@@ -11,7 +11,7 @@
                 </div>
                 <div class=" bg-white my-4 w-full p-4 rounded-3xl">
                     <h2 class=" mb-2 text-lg">Product name:</h2>
-                    <h1 class=" mb-6 text-4xl font-bold">{{ product.name }}</h1>
+                    <h1 class=" mb-6 text-4xl font-bold ">{{ product.name }}</h1>
                     <h2 class=" mb-2 text-lg">Product description:</h2>
                     <h1 class=" text-xl">{{ product.description }}</h1>
                 </div>
@@ -45,7 +45,7 @@ export default {
         return {
             i: 0,
             product: {
-                name: '',
+                name: '', 
                 description: '',
                 category_id: null,
                 price: null,
@@ -67,10 +67,10 @@ export default {
     },
     methods: {
         getProduct() {
-            axios.get("http://localhost:8000/api/product/"+this.$store.state.adminSelectedProductId)
+            axios.get("http://174.138.17.246:8000/api/product/"+this.$route.params.id)
             .then(res => {
                 this.product = res.data
-                axios.get("http://localhost:8000/api/category/" + this.product.category_id)
+                axios.get("http://174.138.17.246:8000/api/category/" + this.product.category_id)
                 .then(res => {
                     this.product.category = res.data.name
                 })
