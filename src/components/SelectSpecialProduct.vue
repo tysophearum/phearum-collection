@@ -22,6 +22,10 @@ export default {
             type: Function,
             required: true,
         },
+        cancelChange: {
+            type: Function,
+            required: true,
+        },
     },
     name: "DeleteCategoryPopup",
     data() {
@@ -31,20 +35,25 @@ export default {
     },
     methods: {
         cancel() {
-            this.$store.commit("setShowSelectSpecialProduct", false)
+            this.cancelChange()
         },
         fetchProducts(){
-            axios.get('https://api.tysophearum.tech/api/product/category/'+this.$store.state.adminSelectedCategoryId)
+            axios.get('https://api.tysophearum.tech/api/product/category/'+this.$route.params.id)
             .then(res => {
                 this.products = res.data.products
             })
         },
         changeSpecialProduct(id) {
-            axios.put('https://api.tysophearum.tech/api/category/'+this.$store.state.adminSelectedCategoryId, {
+            axios.put('https://api.tysophearum.tech/api/category/'+this.$route.params.id, {
                 special_product_id: id
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
+                }
             })
             .then(res => {
                 this.callParentFunction()
+                this.cancelChange()
             })
         }
     },

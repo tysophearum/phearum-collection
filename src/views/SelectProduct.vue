@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class=" flex">
-        <div v-for="(image, index) in product.images" :class="`view w-[15vw] h-26 mx-4 border-4 rounded-lg border-[#ffa405] duration-150 flex items-center justify-center ${index === i ? 'bg-[#ffa405]' : 'bg-white'}`">
+        <div v-for="(image, index) in product.images" :class="`view w-[15vw] cursor-pointer h-26 mx-4 border-4 rounded-lg border-[#ffa405] duration-150 flex items-center justify-center ${index === i ? 'bg-[#ffa405]' : 'bg-white'}`">
             <img class=" overflow-hidden" :src="'https://api.tysophearum.tech'+image.image_path" alt="" @click="changeImage(index)">
         </div>
     </div>

@@ -9,7 +9,6 @@ const store = createStore({
       editCategoryId: undefined,
       deleteProductId: undefined,
       index: null,
-      showSelectSpecialProduct: false,
       shippingInformation: {
         firstName: '',
         lastName: '',
@@ -41,9 +40,6 @@ const store = createStore({
       },
       setIndex(state, data) {
         state.index = data
-      },
-      setShowSelectSpecialProduct(state, data) {
-        state.showSelectSpecialProduct = data
       },
     },
     getters: {

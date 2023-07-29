@@ -1,7 +1,7 @@
 <template>
     <div class=" bg-[#f9f8ff] rounded-xl px-4  h-[100vh] overflow-auto">
         <DeleteProductPopup :callParentFunction="fetchCategory" :cancelDeleteProduct="cancelDeleteCat" v-if="showDeleteProduct"/>
-        <SelectSpecialProduct :callParentFunction="fetchCategory" v-if="this.$store.state.showSelectSpecialProduct"/>
+        <SelectSpecialProduct :callParentFunction="fetchCategory" :cancel-change="cancelChangeSpecialProduct" v-if="showSelectSpecialProduct"/>
         <button @click="this.$router.go(-1)" class="flex items-center h-6 my-4">
             <img class="h-full mr-2" src="https://cdn-icons-png.flaticon.com/512/66/66822.png" alt="">
             <p class=" text-xl">Back</p>
@@ -40,14 +40,14 @@
             <div class=" flex items-center justify-center font-bold">Description</div>
             <div class=" flex items-center justify-center font-bold">Action</div>
         </div>
-        <div v-for="(product, index) in category.products" class=" w-full h-12 border border-white rounded bg-[#ffa30571] duration-100 grid grid-cols-3 hover:bg-[#ffa305ae]" >
-            <button class=" h-full flex items-center justify-center" @click="select(product.id)">{{ product.name }}</button>
-            <button class=" h-full flex items-center justify-center" @click="select(product.id)">{{ product.description }}</button>
+        <RouterLink v-for="(product, index) in category.products" :to="'/viewProduct/'+product.id" class=" w-full h-12 border border-white rounded bg-[#ffa30571] duration-100 grid grid-cols-3 hover:bg-[#ffa305ae]" >
+            <button class=" h-full flex items-center justify-center">{{ product.name }}</button>
+            <button class=" h-full flex items-center justify-center">{{ product.description }}</button>
             <div class=" h-full flex items-center justify-between px-24">
                 <button class=" bg-white w-20 h-9 rounded duration-150 hover:h-11" @click="edit(product.id)">Edit</button>
                 <button class=" bg-red-700 w-20 h-9 rounded text-white duration-150 hover:h-11" @click="showDeleteCat(); passId(product.id)">Delete</button>
             </div>
-        </div>
+        </RouterLink>
     </div>
 </template>
 <script>
@@ -62,6 +62,7 @@ export default {
     },
     data() {
         return {
+            showSelectSpecialProduct: false,
             showDeleteProduct: false,
             category: {
                 name: '',
@@ -86,12 +87,11 @@ export default {
                 console.error(err);
             })
         },
-        changeSpecialProduct(){
-            this.$store.commit('setShowSelectSpecialProduct', true)
+        cancelChangeSpecialProduct(){
+            this.showSelectSpecialProduct = false
         },
-        select(id) {
-            this.$store.commit('setAdminSelectedProductId', id)
-            this.$router.push('/viewProduct')
+        changeSpecialProduct(){
+            this.showSelectSpecialProduct = true
         },
         edit(id) {
             this.$store.commit('setAdminEditedProductId', id)
