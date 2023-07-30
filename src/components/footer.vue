@@ -1,30 +1,47 @@
 <template>
-    <div class="h-20 bg-[#ffa405] rounded-2xl  px-4 py-3 flex justify-between m-2">
-        <div class="flex">
-            <div class="mr-4">
-                <h2><span class="font-bold">PHEARUM</span> <span>COLLECTION</span></h2>
-                <div class="h-1/2 flex mt-1">
-                    <img class="h-full" src="https://cdn-icons-png.flaticon.com/512/39/39196.png" alt="">
-                    <img class="h-full mx-3" src="https://cdn-icons-png.flaticon.com/512/4043/4043916.png" alt="">
-                    <img class="h-full" src="https://cdn-icons-png.flaticon.com/512/39/39223.png" alt="">
+    <footer class="bg-[#ffa405] py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <div class="mb-6 md:mb-0">
+                <h3 class="text-white text-lg font-semibold mb-4">About Us</h3>
+                <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis quam eget velit eleifend ultricies.</p>
+            </div>
+            <div class="mb-6 md:mb-0">
+                <h3 class="text-white text-lg font-semibold mb-4">Categories</h3>
+                <ul>
+                <li><a href="#" class="text-white hover:text-yellow-200">Clothing</a></li>
+                <li><a href="#" class="text-white hover:text-yellow-200">Accessories</a></li>
+                <li><a href="#" class="text-white hover:text-yellow-200">Shoes</a></li>
+                <li><a href="#" class="text-white hover:text-yellow-200">Electronics</a></li>
+                </ul>
+            </div>
+            <div class="mb-6 md:mb-0">
+                <h3 class="text-white text-lg font-semibold mb-4">Contact</h3>
+                <p class="text-white">123 Example St</p>
+                <p class="text-white">City, Country</p>
+                <p class="text-white">info@example.com</p>
+                <p class="text-white">+1 234 567 890</p>
+            </div>
+            <div>
+                <h3 class="text-white text-lg font-semibold mb-4">Follow Us</h3>
+                <div class="flex space-x-4">
+                <a href="#" class="text-white hover:text-yellow-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 13v6h-2v-6m4-4a4 4 0 11-8 0 4 4 0 018 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 9a3 3 0 003 3V3h-2a2 2 0 00-2 2v4M3 21v-2a4 4 0 014-4h2M5 8V6a2 2 0 012-2h6a2 2 0 012 2v2"></path></svg>
+                </a>
+                <a href="#" class="text-white hover:text-yellow-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </a>
+                <a href="#" class="text-white hover:text-yellow-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M22 4L12 14.01l-3-3"></path></svg>
+                </a>
                 </div>
             </div>
-            <div class="flex justify-between">
-                <button class="hover:bg-black hover:text-white hover:duration-300 w-24 mx-1 h-10 bg-white rounded-2xl text-sm shadow-lg flex justify-center items-center font-bold">Category 1</button>
-                <button class="hover:bg-black hover:text-white hover:duration-300 w-24 mx-1 h-10 bg-white rounded-2xl text-sm shadow-lg flex justify-center items-center font-bold">Category 2</button>
-                <button class="hover:bg-black hover:text-white hover:duration-300 w-24 mx-1 h-10 bg-white rounded-2xl text-sm shadow-lg flex justify-center items-center font-bold">Category 3</button>
-                <button class="hover:bg-black hover:text-white hover:duration-300 w-24 mx-1 h-10 bg-white rounded-2xl text-sm shadow-lg flex justify-center items-center font-bold">Category 4</button>
-                <button class="hover:bg-black hover:text-white hover:duration-300 w-24 mx-1 h-10 bg-white rounded-2xl text-sm shadow-lg flex justify-center items-center font-bold">Category 5</button>
             </div>
+            <hr class="my-8 border-yellow-300">
+            <p class="text-center text-white text-sm">&copy; 2023 Your Company. All rights reserved.</p>
         </div>
-        <div class="w-fit">
-            <h1 class="text-xl font-light w-96">Stay in Touch! Join our Newsletter</h1>
-            <div class=" flex">
-                <input type="text" placeholder="Enter email"  class="w-[72%] rounded-xl shadow-lg p-1">
-                <button class="font-bold ml-2">Subsribe</button>
-            </div>
-        </div>
-    </div>
+    </footer>
+
 </template>
 
 <script>

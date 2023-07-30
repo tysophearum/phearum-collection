@@ -36,6 +36,7 @@ export default {
       return {
         name: '',
         description: '',
+        apiUrl: import.meta.env.VITE_API_URL,
       };
     },
     name: "AddCategoryPopUp",
@@ -44,7 +45,7 @@ export default {
             this.cancelPopup()
         },
         addCategory() {
-            axios.post("https://api.tysophearum.tech/api/category", { 
+            axios.post(this.apiUrl+"/api/category", { 
                 name: this.name, 
                 description: this.description
             }, {

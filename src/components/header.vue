@@ -4,14 +4,14 @@
             <RouterLink class="h-full flex items-center justify-center" to="/home">
                 <img src="./icons/logo.png" alt="logo.png" class="h-[80%]">
             </RouterLink>
-            <div class="flex w-1/2 h-full items-center justify-between">
-                <RouterLink v-for="category in categories" :to="'/home/'+category.id" :class="`hover:bg-black hover:text-white hover:duration-300 w-28 h-[75%] ${category.id === this.$route.params.id ? 'bg-black text-white' : 'bg-white'}  rounded-xl shadow-lg flex justify-center items-center text-sm font-bold`">
+            <div class="bigCategories flex w-[70%] h-full items-center overflow-auto rounded-lg">
+                <RouterLink v-for="category in categories" :to="'/home/'+category.id" :class="`w-[100px] min-w-[100px] mx-2 hover:bg-black hover:text-white hover:duration-300 h-[75%] ${category.id === this.$route.params.id ? 'bg-black text-white' : 'bg-white'}  rounded-xl shadow-lg flex justify-center items-center text-sm font-bold`">
                     <button>{{ category.name }}</button>
                 </RouterLink>
             </div>
             <CartPopup @event-name="unshow" class=" duration-200" v-if="this.$store.state.showCart" />
             <UserPopup class=" duration-200" v-if="userInfo && true"/>
-            <div class="flex h-full w-[12%] items-center justify-between">
+            <div class="flex h-full w-36 items-center justify-between">
                 <RouterLink v-if="notLogin()" to="/login">
                     <button class=" bg-black text-white p-1 rounded-lg">Log in</button>
                 </RouterLink>
@@ -24,8 +24,12 @@
                 <button v-if="isLogin()" @click="showUserInfo()" class="h-[57%]">
                     <img class="h-full" src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="">
                 </button>
-                <img class="h-[57%]" src="https://cdn-icons-png.flaticon.com/512/149/149852.png" alt="">
             </div>
+        </div>
+        <div class="smallCategories hidden w-full h-10 mt-2 items-center overflow-auto rounded-lg border-2 border-[#ffa405]">
+            <RouterLink v-for="category in categories" :to="'/home/'+category.id" :class="`w-[100px] min-w-[100px] mx-2 hover:bg-black hover:text-white hover:duration-300 h-[75%] ${category.id === this.$route.params.id ? 'bg-black text-white' : 'bg-white'}  rounded-xl shadow-lg border border-black flex justify-center items-center text-sm font-bold`">
+                <button>{{ category.name }}</button>
+            </RouterLink>
         </div>
     </div>
 </template>
@@ -38,6 +42,7 @@ import axios from 'axios';
             return {
                 userInfo: false,
                 categories: undefined,
+                apiUrl: import.meta.env.VITE_API_URL,
             }
         },
         name: "Header",
@@ -55,7 +60,8 @@ import axios from 'axios';
                 }
             },
             fetchCategories() {
-                axios.get("https://api.tysophearum.tech/api/category")
+                console.log(this.apiUrl);
+                axios.get(this.apiUrl+"/api/category")
                 .then(res => {
                     this.categories = res.data
                 })
@@ -95,5 +101,13 @@ import axios from 'axios';
   position: sticky;
   top: 0;
   z-index: 999;
+}
+@media only screen and (max-width: 950px){
+    .smallCategories{
+        display: flex;
+    }
+    .bigCategories{
+        display: none;
+    }
 }
 </style>

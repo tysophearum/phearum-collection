@@ -30,7 +30,8 @@ export default {
     name: "DeleteCategoryPopup",
     data() {
         return {
-            products: Object()
+            products: Object(),
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
@@ -38,13 +39,13 @@ export default {
             this.cancelChange()
         },
         fetchProducts(){
-            axios.get('https://api.tysophearum.tech/api/product/category/'+this.$route.params.id)
+            axios.get(this.apiUrl+'/api/product/category/'+this.$route.params.id)
             .then(res => {
                 this.products = res.data.products
             })
         },
         changeSpecialProduct(id) {
-            axios.put('https://api.tysophearum.tech/api/category/'+this.$route.params.id, {
+            axios.put(this.apiUrl+'/api/category/'+this.$route.params.id, {
                 special_product_id: id
             }, {
                 headers: {

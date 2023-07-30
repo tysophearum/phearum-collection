@@ -11,7 +11,7 @@
                 </div>
                 <div class="w-full h-1 bg-black"></div>
                 <div v-for="(item, index) in items" class=" grid grid-cols-5 text-lg my-2">
-                    <img class=" rounded-xl h-fit w-fit object-cover" :src="'https://api.tysophearum.tech'+item.product.images[0].image_path" alt="">
+                    <img class=" rounded-xl h-fit w-fit object-cover" :src="apiUrl+item.product.images[0].image_path" alt="">
                     <h1 class=" flex items-center justify-center">{{ item.product.name }}({{ item.size_id+36 }})</h1>
                     <h1 class=" flex items-center justify-center">${{ item.product.price }}</h1>
                     <div class="flex justify-end">
@@ -70,12 +70,13 @@ export default {
             items: undefined,
             edit: -1,
             deletee: -1,
-            total: 0
+            total: 0,
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
         getCart() {
-            axios.get("https://api.tysophearum.tech/api/cart", {
+            axios.get(this.apiUrl+"/api/cart", {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }
@@ -102,7 +103,7 @@ export default {
             }
         },
         editt(id, quantity) {
-            axios.put('https://api.tysophearum.tech/api/item/'+id, {quantity: quantity}, {
+            axios.put(this.apiUrl+'/api/item/'+id, {quantity: quantity}, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }
@@ -116,7 +117,7 @@ export default {
             })
         },
         destroy(id) {
-            axios.delete('https://api.tysophearum.tech/api/item/'+id, {
+            axios.delete(this.apiUrl+'/api/item/'+id, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }

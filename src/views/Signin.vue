@@ -1,14 +1,12 @@
 <template>
     <div class="flex justify-center items-center h-screen">
-        <div class="w-3/5 h-[550px] flex flex-row justify-center items-center shadow-lg">
+        <div class="w-3/5 h-[550px] flex flex-row justify-center items-center shadow-lg bg-[#ffa405] rounded-xl">
             <!-- <div class="border-blue-700 flex-1">
                 <img src="@/assets/images/signup1.jpg" alt="" class="w-[375px] h-full object-contain">
             </div> -->
             <div @submit.prevent="signUp" class="flex flex-1 flex-col justify-center items-center text-center">
-                <h1 class="font-jolly text-black text-7xl mb-4">
-                    <span class="after:content-['M'] after:text-orange-600">Style</span>ingle
-                </h1>
-                <h1 class="text-3xl text-center mb-4">Sign Up</h1>
+                <img src="../components/icons/logo.png" alt="logo.png" class=" h-20">
+                <h1 class="text-3xl text-center mb-4">Register</h1>
 
                 <div class="w-8/12">
                     <!-- <div class="txt_field">
@@ -68,7 +66,8 @@ export default {
             email: '',
             password: '',
             confirm_password: '',
-            role_id: 1
+            role_id: 1,
+            apiUrl: import.meta.env.VITE_API_URL,
         };
     },
     methods: {
@@ -80,7 +79,7 @@ export default {
                 password_confirmation: this.confirm_password,
                 role: this.role_id
             };
-            axios.post('https://api.tysophearum.tech/api/register', data)
+            axios.post(this.apiUrl+'/api/register', data)
             .then(res => {
                 localStorage.setItem('token', res.data.token)
                 this.$router.push('/home/1')
@@ -95,7 +94,7 @@ export default {
 <style>
     .txt_field {
     position: relative;
-    border-bottom: 2px solid #adadad;
+    border-bottom: 2px solid black;
     margin: 15px 0;
     }
 
@@ -115,7 +114,7 @@ export default {
         position: absolute;
         top: 50%;
         left: 5px;
-        color: #adadad;
+        color: black;
         transform: translateY(-50%);
         font-size: 16px;
         pointer-events: none;
@@ -146,7 +145,7 @@ export default {
 
     .pass {
         margin: -3px 0 15px 3px;
-        color: #a6a6a6;
+        color: black;
         cursor: pointer;
         font-size: 14px;
     }

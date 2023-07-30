@@ -82,13 +82,14 @@ export default {
             card_number: null,
             name_on_card: null,
             expire_date: null,
-            cvv: null
+            cvv: null,
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
         validate() {
             if(this.card_number !== null, this.name_on_card !== null, this.expire_date !== null, this.cvv !== null) {
-                axios.post('https://api.tysophearum.tech/api/order', {}, {
+                axios.post(this.apiUrl+'/api/order', {}, {
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('token'),
                     }
@@ -97,19 +98,19 @@ export default {
                     let order = res.data
                     this.$store.state.shippingInformation.order_id = order.id
                     console.log(order);
-                    await axios.post('https://api.tysophearum.tech/api/shippingInformation', this.$store.state.shippingInformation, {
+                    await axios.post(this.apiUrl+'/api/shippingInformation', this.$store.state.shippingInformation, {
                         headers: {
                             Authorization: 'Bearer ' + localStorage.getItem('token'),
                         }
                     })
                     this.$store.state.shippingMethod.order_id = order.id
-                    await axios.post('https://api.tysophearum.tech/api/shippingMethod', this.$store.state.shippingMethod, {
+                    await axios.post(this.apiUrl+'/api/shippingMethod', this.$store.state.shippingMethod, {
                         headers: {
                             Authorization: 'Bearer ' + localStorage.getItem('token'),
                         }
                     })
                     this.$store.state.shippingMethod.order_id = order.id
-                    await axios.post('https://api.tysophearum.tech/api/paymentMethod', {
+                    await axios.post(this.apiUrl+'/api/paymentMethod', {
                         name_on_card: this.name_on_card,
                         card_number: this.card_number+'',
                         expire_date: this.expire_date,

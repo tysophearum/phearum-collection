@@ -56,7 +56,7 @@
                         <h2 class=" text-lg">Selected Images:</h2>
                         <div class=" flex">
                             <div v-for="(image, index) in product.images" :key="index" class="flex items-center justify-center w-40 h-40 bg-[#ffa405] rounded-lg mx-1">
-                                <img :src="'https://api.tysophearum.tech'+image.image_path" alt="Selected Image" class=" w-full object-cover"/>
+                                <img :src="apiUrl+image.image_path" alt="Selected Image" class=" w-full object-cover"/>
                             </div>
                             <div v-for="(image, index) in selectedImages" :key="index" class="flex items-center justify-center w-40 h-40 bg-[#ffa405] rounded-lg mx-1">
                                 <img :src="imageUrl(image)" alt="Selected Image" class=" w-full object-cover"/>
@@ -88,18 +88,19 @@ export default {
             categories: undefined,
             selectAll: false,
             product: Object(),
-            selectedImages: []
+            selectedImages: [],
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
         getSizes() {
-            axios.get("https://api.tysophearum.tech/api/size")
+            axios.get(this.apiUrl+"/api/size")
             .then(res => {
                 this.sizes = res.data
             })
         },
         getCategories() {
-            axios.get("https://api.tysophearum.tech/api/category")
+            axios.get(this.apiUrl+"/api/category")
             .then(res => {
                 this.categories = res.data
             })
@@ -117,7 +118,7 @@ export default {
             }
         },
         addProduct(){
-            axios.put("https://api.tysophearum.tech/api/product/"+this.$route.params.id, {
+            axios.put(this.apiUrl+"/api/product/"+this.$route.params.id, {
                 name: this.product.name,
                 category_id: this.product.category_id,
                 price: this.product.price,
@@ -134,13 +135,13 @@ export default {
                     let formdata = new FormData()
                     formdata.append("product_id", newProduct.id)
                     formdata.append("image", image)
-                    axios.post("https://api.tysophearum.tech/api/image", formdata, {header: { "content-type": "multipart/form-data" }})
+                    axios.post(this.apiUrl+"/api/image", formdata, {header: { "content-type": "multipart/form-data" }})
                 });
                 this.$router.push('/ProductManagement')
             })
         },
         getProduct() {
-            axios.get('https://api.tysophearum.tech/api/product/'+this.$route.params.id)
+            axios.get(this.apiUrl+'/api/product/'+this.$route.params.id)
             .then(res => {
                 this.product = res.data
                 this.product.sizes.forEach(size => {

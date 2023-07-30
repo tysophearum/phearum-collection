@@ -14,7 +14,7 @@
           <div class="flex items-center justify-between">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" @click="">Sign In</button>
             <RouterLink to='/register'>
-              <button class="text-blue-500 font-bold">Sign Up</button>
+              <button class="text-blue-500 font-bold">Register</button>
             </RouterLink>
           </div>
         </form>
@@ -27,7 +27,8 @@
         data() {
           return {
             email: '',
-            password: ''
+            password: '',
+            apiUrl: import.meta.env.VITE_API_URL,
           };
         },
         name: "Login",
@@ -40,7 +41,7 @@
               password: this.password
             }
             
-            axios.post("https://api.tysophearum.tech/api/login", data)
+            axios.post(this.apiUrl+"/api/login", data)
               .then(response => {
                 let res = response.data;
                 

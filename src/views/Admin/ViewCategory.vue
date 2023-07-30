@@ -20,7 +20,7 @@
                         <button @click="changeSpecialProduct()" class="bg-black text-white text-sm p-1 rounded-xl duration-150 hover:bg-gray-600">Change</button>
                     </div>
                     <div v-if="category.special_product_id != null" @click="select(category.special_product.id)" class="w-full  flex justify-between cursor-pointer">
-                        <img class="w-[49%] h-fit" :src="'https://api.tysophearum.tech'+category.special_product.images[0].image_path" alt="">
+                        <img class="w-[49%] h-fit" :src="apiUrl+category.special_product.images[0].image_path" alt="">
                         <div class="w-[49%]">
                             <h2 class=" mb-2 text-lg">Product name:</h2>
                             <h1 class=" mb-2 text-4xl font-bold ">{{ category.special_product.name }}</h1>
@@ -74,11 +74,12 @@ export default {
                     }]
                 }
             },
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
         fetchCategory() {
-            axios.get("https://api.tysophearum.tech/api/category/products/"+this.$route.params.id)
+            axios.get(this.apiUrl+"/api/category/products/"+this.$route.params.id)
             .then(res => {
                 this.category = res.data
                 this.category.special_product = this.category.products.find(product => product.id == this.category.special_product_id)

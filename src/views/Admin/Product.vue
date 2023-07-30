@@ -39,7 +39,8 @@ export default{
     data() {
         return {
             products: undefined,
-            showDeleteProduct: false
+            showDeleteProduct: false,
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
@@ -53,7 +54,7 @@ export default{
             this.$store.commit("setDeleteProductId", id)
         },
         getProducts() {
-            axios.get("https://api.tysophearum.tech/api/product")
+            axios.get(this.apiUrl+"/api/product")
             .then(res => {
                 this.products = res.data
             })

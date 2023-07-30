@@ -50,12 +50,13 @@ export default {
     name: "PromotionManagement",
     data() {
         return {
-            items: undefined
+            items: undefined,
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
         fetchIndex() {
-            axios.get("https://api.tysophearum.tech/api/product/all")
+            axios.get(this.apiUrl+"/api/product/all")
             .then(res => {
                 this.items = res.data
             })
@@ -64,7 +65,7 @@ export default {
             })
         },
         promote(id) {
-            axios.get("https://api.tysophearum.tech/api/product/promote/"+id, {
+            axios.get(this.apiUrl+"/api/product/promote/"+id, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
                 }
@@ -74,7 +75,7 @@ export default {
             })
         },
         demote(id) {
-            axios.get("https://api.tysophearum.tech/api/product/demote/"+id, {
+            axios.get(this.apiUrl+"/api/product/demote/"+id, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
                 }

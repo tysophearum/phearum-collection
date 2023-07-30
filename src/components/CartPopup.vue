@@ -31,12 +31,13 @@ export default {
     name: "CartPopup",
     data() {
         return {
-            items: undefined
+            items: undefined,
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
         getCart() {
-            axios.get("https://api.tysophearum.tech/api/cart", {
+            axios.get(this.apiUrl+"/api/cart", {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }

@@ -20,13 +20,14 @@ export default {
         return {
             user: {
                 name: '',
-                email: ''
+                email: '',
+                apiUrl: import.meta.env.VITE_API_URL,
             }
         }
     },
     methods: {
         logout() {
-            axios.get("https://api.tysophearum.tech/api/logout", {
+            axios.get(this.apiUrl+"/api/logout", {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }
@@ -38,7 +39,7 @@ export default {
             })
         },
         fetchUser() {
-            axios.get('https://api.tysophearum.tech/api/user', {
+            axios.get(this.apiUrl+'/api/user', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }

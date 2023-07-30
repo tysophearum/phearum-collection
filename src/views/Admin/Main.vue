@@ -31,12 +31,12 @@ export default {
                     route: "PromotionManagement"
                 },
             ],
-            
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
         logout() {
-            axios.get("https://api.tysophearum.tech/api/logout", {
+            axios.get(this.apiUrl+"/api/logout", {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
                 }

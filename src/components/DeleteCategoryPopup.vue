@@ -22,6 +22,11 @@
 <script>
 import axios from 'axios';
 export default {
+    data() {
+        return {
+            apiUrl: import.meta.env.VITE_API_URL,
+        }
+    },
     props: {
         callParentFunction: {
             type: Function,
@@ -39,7 +44,7 @@ export default {
         },
         deleteItem() {
             this.cancel()
-            axios.delete("https://api.tysophearum.tech/api/category/"+this.$store.state.deleteCategoryId, {
+            axios.delete(this.apiUrl+"/api/category/"+this.$store.state.deleteCategoryId, {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('tokenAdmin'),
                 }

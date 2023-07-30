@@ -46,7 +46,8 @@ export default{
             change: this.$store.state.categoryChange,
             addCategoryPopup: false,
             showDeleteCategory: false,
-            showEditCategory: false
+            showEditCategory: false,
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
@@ -60,7 +61,7 @@ export default{
             this.$store.commit("setDeleteCategoryId", id)
         },
         getCategories() {
-            axios.get("https://api.tysophearum.tech/api/category")
+            axios.get(this.apiUrl+"/api/category")
             .then(res => {
                 this.categories = res.data
             })

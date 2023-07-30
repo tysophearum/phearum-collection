@@ -94,11 +94,12 @@ export default {
     data() {
         return {
             validation: Object(),
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
         getShippingInfo() {
-            axios.get('https://api.tysophearum.tech/api/shippingInformation', {
+            axios.get(this.apiUrl+'/api/shippingInformation', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
                 }

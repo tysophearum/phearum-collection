@@ -98,18 +98,19 @@ export default {
             category_id: undefined,
             price: undefined,
             description: undefined,
-            selectedImages: []
+            selectedImages: [],
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
         getSizes() {
-            axios.get("https://api.tysophearum.tech/api/size")
+            axios.get(this.apiUrl+"/api/size")
             .then(res => {
                 this.sizes = res.data
             })
         },
         getCategories() {
-            axios.get("https://api.tysophearum.tech/api/category")
+            axios.get(this.apiUrl+"/api/category")
             .then(res => {
                 this.categories = res.data
             })
@@ -127,7 +128,7 @@ export default {
             }
         },
         addProduct(){
-            axios.post("https://api.tysophearum.tech/api/product", {
+            axios.post(this.apiUrl+"/api/product", {
                 name: this.name,
                 category_id: this.category_id,
                 price: this.price,
@@ -145,7 +146,7 @@ export default {
                     let formdata = new FormData()
                     formdata.append("product_id", newProduct.id)
                     formdata.append("image", image)
-                    axios.post("https://api.tysophearum.tech/api/image", formdata, {header: { "content-type": "multipart/form-data" }})
+                    axios.post(this.apiUrl+"/api/image", formdata, {header: { "content-type": "multipart/form-data" }})
                 });
                 this.$router.go(-1)
             })

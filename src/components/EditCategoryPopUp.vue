@@ -36,7 +36,8 @@ export default {
         category: {
             id: undefined,
             name: "",
-            description: ""
+            description: "",
+            apiUrl: import.meta.env.VITE_API_URL,
         }
       };
     },
@@ -46,7 +47,7 @@ export default {
             this.cancelEditCategory()
         },
         addCategory() {
-            axios.put("https://api.tysophearum.tech/api/category/"+this.category.id, {
+            axios.put(this.apiUrl+"/api/category/"+this.category.id, {
                 name: this.category.name, 
                 description: this.category.description
             }, {
@@ -59,7 +60,7 @@ export default {
             })
         },
         getCategory() {
-            axios.get("https://api.tysophearum.tech/api/category/" + this.$store.state.editCategoryId)
+            axios.get(this.apiUrl+"/api/category/" + this.$store.state.editCategoryId)
             .then(res => {
                 this.category = res.data
             })
