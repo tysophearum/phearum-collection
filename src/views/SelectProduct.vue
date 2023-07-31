@@ -1,11 +1,14 @@
 <template>
-    <div class="breadcrumb flex h-5 mx-4">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Home-icon.svg/1200px-Home-icon.svg.png" alt="">
-        <span class=" mx-3"> > </span> <span>Nike</span> <span class=" mx-3"> > </span> <b> Nike flyease</b>
-    </div>
-    <div class="productInfo flex justify-between">
-        <div class="bg-[#ffa405] rounded-xl m-4 h-[56vh] w-[48%] flex items-center justify-center shadow-2xl shadow-grey-900">
-            <img :src="apiUrl+product.images[i].image_path" alt="">
+    <div class="productInfo flex justify-between px-4">
+        <div class="images w-[48%]">
+            <div class="mainImage bg-[#ffa405] rounded-xl my-4 h-[56vh] w-full flex items-center justify-center shadow-2xl shadow-grey-900">
+                <img :src="apiUrl+product.images[i].image_path" alt="">
+            </div>
+            <div class=" w-full grid grid-cols-3 gap-4 mb-6">
+                <div v-for="(image, index) in product.images" :class="`view w-full cursor-pointer h-26 mx-4 border-4 rounded-lg border-[#ffa405] duration-150 flex items-center justify-center ${index === i ? 'bg-[#ffa405]' : 'bg-white'}`">
+                    <img class=" overflow-hidden" :src="apiUrl+image.image_path" alt="" @click="changeImage(index)">
+                </div>
+            </div>
         </div>
         <div class="info w-[48%] p-4">
             <h1 class=" text-5xl font-bold">{{product.name}}</h1>
@@ -25,22 +28,6 @@
             </div>
             <div class="w-full h-1 bg-black my-2"></div>
             <button @click="addToCart()" class=" w-full bg-[#ffa405] text-xl font-bold p-2 rounded-lg shadow-2xl shadow-grey-900">Add to Cart</button>
-        </div>
-    </div>
-    <div class=" flex">
-        <div v-for="(image, index) in product.images" :class="`view w-[15vw] cursor-pointer h-26 mx-4 border-4 rounded-lg border-[#ffa405] duration-150 flex items-center justify-center ${index === i ? 'bg-[#ffa405]' : 'bg-white'}`">
-            <img class=" overflow-hidden" :src="apiUrl+image.image_path" alt="" @click="changeImage(index)">
-        </div>
-    </div>
-    <div class=" p-4">
-        <div class="w-full h-1 bg-black my-2"></div>
-        <h1 class="text-xl font-bold my-1">Related products</h1>
-        <div class="grid grid-cols-5 gap-6 p-4">
-            <StoreItem name="Nike Impact 4" price="200" src="https://static.nike.com/a/images/t_default/f3b760d7-2c28-4801-bec6-12c32d7137b1/impact-4-basketball-shoes-bwLwnb.png" />
-            <StoreItem name="Nike SA" price="200" src="https://www.nike.sa/dw/image/v2/BDVB_PRD/on/demandware.static/-/Sites-akeneo-master-catalog/default/dw9a3fac75/nk/2ad/e/3/0/d/4/2ade30d4_d24d_4955_b49e_b5d37b49e03d.png?sw=520&sh=520&sm=fit" />
-            <StoreItem name="Nike Air Zoom Flight 95" price="200" src="https://static.nike.com/a/images/t_default/850885fb-624d-42e8-b403-a72f282400ff/air-zoom-flight-95-shoes-058DbL.png" />
-            <StoreItem name="Nike Elevate 3" price="200" src="https://static.nike.com/a/images/t_default/6a773a8c-1dcb-4559-9e65-40d2b9917c2b/elevate-3-basketball-shoes-QT43Gj.png" />
-            <StoreItem name="Giannis Immortality" price="200" src="https://static.nike.com/a/images/t_default/58fa611a-337e-4716-9106-144ebc168cc5/giannis-immortality-basketball-shoes-p9QlJF.png" />
         </div>
     </div>
 </template>
@@ -125,3 +112,19 @@ export default {
     }
 }
 </script>
+<style scoped>
+@media only screen and (max-width: 850px){
+    .productInfo{
+        display: block;
+    }
+    .images{
+        width: 96%;
+    }
+    .mainImage{
+        height: 70%;
+    }
+    .info{
+        width: 100%;
+    }
+}
+</style>
