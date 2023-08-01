@@ -1,7 +1,7 @@
 <template>
     <div class="h-fit p-2 bg-white">
         <div class="h-12 bg-[#ffa405] rounded-lg flex items-center justify-between px-4 header">
-            <RouterLink class="h-full flex items-center justify-center" to="/home">
+            <RouterLink class="h-full flex items-center justify-center" to="/home/1">
                 <img src="./icons/logo.png" alt="logo.png" class="h-[80%]">
             </RouterLink>
             <div class="bigCategories flex w-[70%] h-full items-center overflow-auto rounded-lg">
@@ -24,6 +24,11 @@
                 <button v-if="isLogin()" @click="showUserInfo()" class="h-[57%]">
                     <img class="h-full" src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="">
                 </button>
+                <RouterLink v-if="isLogin()" class="h-[57%]" to="/orderHistory">
+                    <button class="h-full">
+                        <img class="h-full" src="https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/orders-icon.png" alt="">
+                    </button>
+                </RouterLink>
             </div>
         </div>
         <div class="smallCategories hidden w-full h-10 mt-2 items-center overflow-auto rounded-lg border-2 border-[#ffa405]">

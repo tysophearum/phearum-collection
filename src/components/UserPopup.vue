@@ -21,8 +21,8 @@ export default {
             user: {
                 name: '',
                 email: '',
-                apiUrl: import.meta.env.VITE_API_URL,
-            }
+            },
+            apiUrl: import.meta.env.VITE_API_URL,
         }
     },
     methods: {
@@ -39,6 +39,7 @@ export default {
             })
         },
         fetchUser() {
+            console.log(this.apiUrl);
             axios.get(this.apiUrl+'/api/user', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -46,6 +47,9 @@ export default {
             })
             .then(res => {
                 this.user = res.data
+            })
+            .catch(err => {
+                console.error(err);
             })
         }
     },
