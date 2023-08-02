@@ -108,6 +108,11 @@ const router = createRouter({
           name: "ViewCategory",
           component: () => import('../views/Admin/ViewCategory.vue')
         },
+        {
+          path: "/orderManagement",
+          name: "OrderManagement",
+          component: () => import('../views/Admin/OrderManagement.vue')
+        },
       ]
     }
   ]
