@@ -33,7 +33,7 @@
                             <input v-model="name_on_card" type="text" required class="rounded-2xl w-1/3 border-2 border-black pl-4 py-3" placeholder="Cardholder Name" />
                             <input v-model="expire_date" type="text" required class="rounded-2xl w-1/3 border-2 border-black pl-4 py-3" placeholder="MM/YY" />
                             <input v-model="cvv" type="number" required class="rounded-2xl w-1/3 py-3 border-2 border-black pl-4" placeholder="CVV" />
-                        </div>
+                        </div>​
                         <div class=" flex justify-between items-center mt-4">
                         <button @click="this.$router.go(-1)">&lt;<span class=" underline ml-1">Go Back</span></button>
                             <!-- <RouterLink to="/shippingInformation"> -->
@@ -44,7 +44,7 @@
                 </div>
                 <div class=" w-[44%]">
                     <div class=" bg-[#ffa405] w-full rounded-2xl p-3 h-fit">
-                        <h1 class=" text-3xl font-bold text-center mb-9">Summary (1 item)</h1>
+                        <h1 class=" text-3xl font-bold text-center mb-9">Summary</h1>
                         <div class=" flex justify-between my-4 pl-5 text-2xl">
                             <span class=" w-1/3">Subtotal:</span>
                             <span class=" w-1/3 text-center">$200.00</span>

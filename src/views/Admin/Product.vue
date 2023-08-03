@@ -16,7 +16,7 @@
             <RouterLink :to="'/viewProduct/'+product.id" class=" flex items-center justify-center">
                 <button class=" h-full flex items-center justify-center">{{ product.name }}</button>
             </RouterLink>
-            <RouterLink :to="'/viewProduct/'+product.id" class=" flex items-center justify-center">
+            <RouterLink :to="'/viewProduct/'+product.id" class=" flex items-center justify-center overflow-scroll">
                 <button class=" h-full flex items-center justify-center">{{ product.description }}</button>
             </RouterLink>
             <div class=" h-full flex items-center justify-between px-24">

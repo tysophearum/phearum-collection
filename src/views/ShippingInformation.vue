@@ -53,17 +53,13 @@
                 </form>
                 <div class=" w-[44%]">
                     <div class=" bg-[#ffa405] w-full rounded-2xl p-3 h-fit">
-                        <h1 class=" text-3xl font-bold text-center mb-9">Summary (1 item)</h1>
+                        <h1 class=" text-3xl font-bold text-center mb-9">Summary</h1>
                         <div class=" flex justify-between my-4 pl-5 text-2xl">
                             <span class=" w-1/3">Subtotal:</span>
-                            <span class=" w-1/3 text-center">$200.00</span>
+                            <span class=" w-1/3 text-center">${{ this.$store.getters.getSubTotalPrice }}</span>
                         </div>
                         <div class=" flex justify-between my-4 pl-5 text-2xl">
-                            <span class=" w-1/3">Shopping:</span>
-                            <span class=" w-1/3 text-center">-</span>
-                        </div>
-                        <div class=" flex justify-between my-4 pl-5 text-2xl">
-                            <span class=" w-1/3">Est. Taxes:</span>
+                            <span class=" w-1/3">Shipping:</span>
                             <span class=" w-1/3 text-center">-</span>
                         </div>
                         <div class="w-full h-1 bg-black"></div>
@@ -76,7 +72,7 @@
                         <div class="w-full h-1 bg-black"></div>
                         <div class=" flex justify-between my-4 pl-5 text-2xl font-bold">
                             <span class=" w-1/3">Total:</span>
-                            <span class=" w-1/3 text-center">$200.00</span>
+                            <span class=" w-1/3 text-center">${{ this.$store.getters.getSubTotalPrice + this.$store.getters.getShippingPrice }}</span>
                         </div>
                     </div>
                 </div>

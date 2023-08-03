@@ -20,6 +20,9 @@ const store = createStore({
         zip: '',
         order_id: 0
       },
+      totalPrice: 0,
+      subTotalPrice: 0,
+      shippingPrice: 0,
       shippingMethod: undefined
     },
     mutations: {
@@ -41,9 +44,26 @@ const store = createStore({
       setIndex(state, data) {
         state.index = data
       },
+      setTotalPrice(state, data) {
+        state.totalPrice = data
+      },
+      setSubTotalPrice(state, data) {
+        state.subTotalPrice = data
+      },
+      setShippingPrice(state, data) {
+        state.shippingPrice = data
+      },
     },
     getters: {
-
+      getTotalPrice (state) {
+        return state.totalPrice
+      },
+      getSubTotalPrice (state) {
+        return state.subTotalPrice
+      },
+      getShippingPrice (state) {
+        return state.shippingPrice
+      }
     },
     // plugins: [createPersistedState({})],
 })
