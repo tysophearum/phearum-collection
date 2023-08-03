@@ -43,7 +43,7 @@
         <RouterLink v-for="(product, index) in category.products" :to="'/viewProduct/'+product.id" class=" w-full h-12 border border-white rounded bg-[#ffa30571] duration-100 grid grid-cols-3 hover:bg-[#ffa305ae]" >
             <button class=" h-full flex items-center justify-center">{{ product.name }}</button>
             <button class=" h-full flex items-center justify-center overflow-scroll">{{ product.description }}</button>
-            <div class=" h-full flex items-center justify-between px-24">
+            <div class=" h-full flex items-center justify-between px-24 z-20">
                 <button class=" bg-white w-20 h-9 rounded duration-150 hover:h-11" @click="edit(product.id)">Edit</button>
                 <button class=" bg-red-700 w-20 h-9 rounded text-white duration-150 hover:h-11" @click="showDeleteCat(); passId(product.id)">Delete</button>
             </div>
@@ -95,8 +95,7 @@ export default {
             this.showSelectSpecialProduct = true
         },
         edit(id) {
-            this.$store.commit('setAdminEditedProductId', id)
-            this.$router.push('/EditProduct')
+            this.$router.push('/EditProduct/'+id)
         },
         showDeleteCat() {
             this.showDeleteProduct = true

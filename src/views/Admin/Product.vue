@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#f9f8ff] rounded-xl px-6">
+    <div class="bg-[#f9f8ff] rounded-xl px-6 h-[100vh] overflow-scroll">
         <DeleteProductPopup :callParentFunction="getProducts" :cancelDeleteProduct="cancelDeleteCat" v-if="showDeleteProduct"/>
         <div class=" py-6">
             <h1 class=" text-3xl font-bold">Products</h1>
