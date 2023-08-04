@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#f9f8ff] rounded-xl">
+    <div class="bg-[#f9f8ff] rounded-xl h-[100vh] overflow-auto">
         <div class=" p-6">
             <h1 class=" text-3xl font-bold">Product Promotion Management</h1>
         </div>
